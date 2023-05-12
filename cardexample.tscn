@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1vg1rj21lxwj"]
+
+[ext_resource type="Texture2D" uid="uid://bqjua83avfi4y" path="res://icon.svg" id="1_a41f6"]
+
+[node name="card" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(65, 64)
+texture = ExtResource("1_a41f6")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "value: 0"
