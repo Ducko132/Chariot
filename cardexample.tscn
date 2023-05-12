@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bqjua83avfi4y" path="res://icon.svg" id="1_a41f6"]
 
 [node name="card" type="Node2D"]
+position = Vector2(20, -20)
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(65, 64)
