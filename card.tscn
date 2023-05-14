@@ -1,6 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://b682qlqmy1vch"]
+[gd_scene load_steps=9 format=3 uid="uid://b682qlqmy1vch"]
 
 [ext_resource type="Script" path="res://card.gd" id="1_ne2vv"]
+[ext_resource type="Texture2D" uid="uid://dwh25g6j8twvh" path="res://Art/blank.png" id="2_eo1f0"]
+[ext_resource type="Texture2D" uid="uid://cwkr8hgqjf37j" path="res://Art/bolt.png" id="3_8warx"]
+[ext_resource type="Texture2D" uid="uid://clisbnqlxrirq" path="res://Art/GiftofFlame.png" id="4_psts6"]
+[ext_resource type="Texture2D" uid="uid://dvbhq2cet2w2y" path="res://Art/LiftTheSky.png" id="5_ap4bp"]
+[ext_resource type="Texture2D" uid="uid://6ad7xcx0l32y" path="res://Art/tridentThrow.png" id="6_b4rh0"]
+[ext_resource type="Texture2D" uid="uid://cxh8fpjo65wra" path="res://Art/UndeadMarch.png" id="7_i28ee"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chp8g"]
+size = Vector2(437.055, 590.226)
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_ne2vv")
+
+[node name="Blank" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(196, 264)
+texture = ExtResource("2_eo1f0")
+
+[node name="Bolt" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(221, 296)
+texture = ExtResource("3_8warx")
+
+[node name="GiftofFlame" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(218, 292)
+texture = ExtResource("4_psts6")
+
+[node name="LiftTheSky" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(219, 294)
+texture = ExtResource("5_ap4bp")
+
+[node name="TridentThrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(225, 295)
+texture = ExtResource("6_b4rh0")
+
+[node name="UndeadMarch" type="Sprite2D" parent="."]
+position = Vector2(136.25, 189.25)
+scale = Vector2(0.633787, 0.645516)
+texture = ExtResource("7_i28ee")
+
+[node name="Area2D" type="Area2D" parent="UndeadMarch"]
+position = Vector2(1.97224, 0.38736)
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UndeadMarch/Area2D"]
+shape = SubResource("RectangleShape2D_chp8g")

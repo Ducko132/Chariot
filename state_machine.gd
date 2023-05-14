@@ -2,11 +2,15 @@ extends Node2D
 var Cards = preload("res://card.gd")
 var CardsEnum = Cards.Cards
 var Power = Cards.Power
+var Art = Cards.Art
 
 enum State {BEGIN, DEAL, PLAYER1_DRAW, PLAYER1_PLAY, MONSTERTURN, END}
 var curstate = State.BEGIN
 var state_time = 0.0
 var cardNodes = []
+
+var playerhp = 20
+var monsterhp = 20
 
 # node to represent card (make copies manually)
 
@@ -26,17 +30,33 @@ func _ready():
 		deck.remove_at(0)
 	
 	print(hand)
+	print(hand[6])
+	var testcard = hand[6]
+	# WOOOOO I FIGURED IT OUT
+	print(Cards.Power[CardsEnum.get(testcard)])
+	load(Cards.Art[CardsEnum.get(hand[6])])
+	#print(ctext)
+	#add_child(cardex)
+	
 	
 	for i in 3:
-		var c = load("res://cardexample.tscn").instantiate()
+		var c = load("res://card.tscn").instantiate()
+		#var test = (c.find_child(str(CardsEnum.get(hand[6]))))
+		#var c = load(Cards.Art[CardsEnum.get(hand[6])]).instantiate()
 		add_child(c)
 		cardNodes.append(c)
-		c.position = Vector2((i*200)+400,400)
-		c.find_child("Label").text = "value:" + str(hand[i])
+		c.position = Vector2((i*400)+40,400)
+		#c.find_child("Label").text = "value:" + str(hand[i])
 
 func _process(delta):
-	for i in 3:
-		cardNodes[i].find_child("Label").text = "value:" + str(hand[i])
+	#for i in cardNodes.size():
+	#	cardNodes[i].find_child("Label").text = "value:" + str(hand[i])
+	pass
+
+func draw_card():
+	hand.append(deck[0])
+	deck.remove_at(0)
+	pass
 
 func switch_states(new_state: State):
 	curstate = new_state
