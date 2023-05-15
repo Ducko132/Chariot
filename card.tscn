@@ -50,3 +50,7 @@ scale = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UndeadMarch/Area2D"]
 shape = SubResource("RectangleShape2D_chp8g")
+
+[node name="Label" type="Label" parent="UndeadMarch"]
+offset_right = 40.0
+offset_bottom = 23.0

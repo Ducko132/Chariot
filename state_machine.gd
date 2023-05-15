@@ -8,6 +8,7 @@ enum State {BEGIN, DEAL, PLAYER1_DRAW, PLAYER1_PLAY, MONSTERTURN, END}
 var curstate = State.BEGIN
 var state_time = 0.0
 var cardNodes = []
+var rng = RandomNumberGenerator.new()
 
 var playerhp = 20
 var monsterhp = 20
@@ -45,12 +46,13 @@ func _ready():
 		#var c = load(Cards.Art[CardsEnum.get(hand[6])]).instantiate()
 		add_child(c)
 		cardNodes.append(c)
-		c.position = Vector2((i*400)+40,400)
+		#print(Cards.Power[CardsEnum.get(c)])
+		c.position = Vector2((i*400)+50,400)
 		#c.find_child("Label").text = "value:" + str(hand[i])
 
 func _process(delta):
-	#for i in cardNodes.size():
-	#	cardNodes[i].find_child("Label").text = "value:" + str(hand[i])
+	for i in cardNodes.size():
+		cardNodes[i].find_child("Label").text = "value:" + str(hand[i])
 	pass
 
 func draw_card():
@@ -79,5 +81,9 @@ func switch_states(new_state: State):
 
 
 func _on_button_pressed():
-	hand[2] = 5
+	var cardt = hand[0]
+	var dmg = Cards.Power[CardsEnum.get(cardt)]
+	monsterhp -= dmg
+	cardNodes.remove_at(0)
+	
 	pass # Replace with function body.

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqytu2oud3k8s"]
+[gd_scene load_steps=3 format=3 uid="uid://bqytu2oud3k8s"]
 
 [ext_resource type="Script" path="res://state_machine.gd" id="1_1up70"]
+[ext_resource type="PackedScene" uid="uid://b7h807q3mvfd6" path="res://bolt.tscn" id="2_2q0tf"]
 
 [node name="StateMachine" type="Node2D"]
 script = ExtResource("1_1up70")
@@ -9,6 +10,9 @@ script = ExtResource("1_1up70")
 offset_right = 8.0
 offset_bottom = 8.0
 rotation = 3.72152e-05
-text = "Test"
+text = "Play your first card!"
+
+[node name="bolt" parent="." instance=ExtResource("2_2q0tf")]
+visible = false
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

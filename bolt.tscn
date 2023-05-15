@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7h807q3mvfd6"]
+
+[ext_resource type="Script" path="res://bolt.gd" id="1_7mud5"]
+[ext_resource type="Texture2D" uid="uid://cwkr8hgqjf37j" path="res://Art/bolt.png" id="2_io83s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a65jq"]
+size = Vector2(440, 594)
+
+[node name="bolt" type="Node2D"]
+script = ExtResource("1_7mud5")
+
+[node name="Bolt" type="Sprite2D" parent="."]
+position = Vector2(113, 150)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_io83s")
+
+[node name="Area2D" type="Area2D" parent="Bolt"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bolt/Area2D"]
+position = Vector2(-2, -1)
+shape = SubResource("RectangleShape2D_a65jq")
