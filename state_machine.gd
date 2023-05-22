@@ -35,24 +35,32 @@ func _ready():
 	var testcard = hand[6]
 	# WOOOOO I FIGURED IT OUT
 	print(Cards.Power[CardsEnum.get(testcard)])
-	load(Cards.Art[CardsEnum.get(hand[6])])
+	#load(Cards.Art[CardsEnum.get(hand[6])])
 	#print(ctext)
 	#add_child(cardex)
 	
 	
 	for i in 3:
-		var c = load("res://card.tscn").instantiate()
-		#var test = (c.find_child(str(CardsEnum.get(hand[6]))))
+		#var c = load("res://card.tscn").instantiate()
 		#var c = load(Cards.Art[CardsEnum.get(hand[6])]).instantiate()
-		add_child(c)
-		cardNodes.append(c)
+		#var test = (c.find_child(str(CardsEnum.get(hand[6]))))
+		#add_child(c)
+		#cardNodes.append(c)
 		#print(Cards.Power[CardsEnum.get(c)])
-		c.position = Vector2((i*400)+50,400)
+		#c.position = Vector2((i*400)+50,400)
 		#c.find_child("Label").text = "value:" + str(hand[i])
+		
+		var sprite = Sprite2D.new()
+		var texture = load(Cards.Art[CardsEnum.get(hand[6])])
+		sprite.texture = texture
+		add_child(sprite)
+		cardNodes.append(sprite)
+		sprite.position = Vector2((i*400)+50,400)
+		
 
 func _process(delta):
-	for i in cardNodes.size():
-		cardNodes[i].find_child("Label").text = "value:" + str(hand[i])
+	#for i in cardNodes.size():
+		#cardNodes[i].find_child("Label").text = "value:" + str(hand[i])
 	pass
 
 func draw_card():
