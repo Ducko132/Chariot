@@ -18,6 +18,17 @@ var monsterhp = 20
 var deck = []
 var hand = [1,2,3]
 
+func _on_mouse_entered(sprite):
+	sprite.scale = Vector2(0.7,0.7)
+	print("Hover")
+
+func _on_mouse_exited():
+	print("Mouse left")
+
+func _input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.pressed:
+		print("click")
+
 func _ready():
 	for i in 8:
 		for Card in CardsEnum:
@@ -30,7 +41,7 @@ func _ready():
 		hand.append(deck[0])
 		deck.remove_at(0)
 	
-	print(hand)
+	print("hand",hand)
 	print(hand[6])
 	var testcard = hand[6]
 	# WOOOOO I FIGURED IT OUT
@@ -41,22 +52,31 @@ func _ready():
 	
 	
 	for i in 3:
-		#var c = load("res://card.tscn").instantiate()
-		#var c = load(Cards.Art[CardsEnum.get(hand[6])]).instantiate()
-		#var test = (c.find_child(str(CardsEnum.get(hand[6]))))
-		#add_child(c)
-		#cardNodes.append(c)
-		#print(Cards.Power[CardsEnum.get(c)])
-		#c.position = Vector2((i*400)+50,400)
-		#c.find_child("Label").text = "value:" + str(hand[i])
-		
 		var sprite = Sprite2D.new()
-		var texture = load(Cards.Art[CardsEnum.get(hand[6])])
+		var texture = load(Cards.Art[CardsEnum.get(hand[5])])
 		sprite.texture = texture
+		sprite.scale = Vector2(0.5,0.5)
+		
+		var area = Area2D.new()
+		var shape = CollisionShape2D.new()
+		shape.shape = RectangleShape2D.new()
+		shape.shape.extents = sprite.texture.get_size() / 2*sprite.scale
+		#sprite.set_process_input(true)
+		
+		#func _input(event):
+		#	if event is InputEventMouseMotion:
+		#		if sprite.get_rect().has_point(event.position):
+		#			print("hover")
+		
+		sprite.add_child(area)
+		area.add_child(shape)
 		add_child(sprite)
 		cardNodes.append(sprite)
-		sprite.position = Vector2((i*400)+50,400)
+		sprite.position = Vector2((i*400)+175,500)
 		
+		area.input_event.connect(_input_event)
+		area.mouse_entered.connect(_on_mouse_entered(sprite))
+		area.mouse_exited.connect(_on_mouse_exited, [sprite])
 
 func _process(delta):
 	#for i in cardNodes.size():
