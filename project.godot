@@ -15,6 +15,10 @@ run/main_scene="res://state_machine.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

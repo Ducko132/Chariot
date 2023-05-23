@@ -8,6 +8,7 @@ var Art = Cards.Art
 enum State {BEGIN, DEAL, PLAYER1_DRAW, PLAYER1_PLAY, MONSTERTURN, END}
 var curstate = State.BEGIN
 var state_time = 0.0
+var playpos
 var cardNodes = []
 var rng = RandomNumberGenerator.new()
 
@@ -42,16 +43,48 @@ func _ready():
 	
 	for i in 5:
 		var card = CardScene.instantiate()
+		card.cardplayed.connect(play_card)
 		var card_type = hand[i]
 		card.set_card_type(card_type)
 		add_child(card)
 		cardNodes.append(card)
-		card.position = Vector2((i*200)+175,400)
+		card.position = Vector2((i*200)+175,525)
+		print(card.position)
 
 func _process(delta):
-	#for i in cardNodes.size():
-		#cardNodes[i].find_child("Label").text = "value:" + str(hand[i])
-	pass
+	$Label.text = "monster health: " + str(monsterhp)
+	if monsterhp <= 0:
+		print("GGWP")
+
+func play_card(card):
+	var idx = hand.find(card)
+	print("gklahglkdjafklsajf", card.position)
+	monsterhp -= Power[card.get_card_type(card)]
+	playpos = card.position
+	spawn_card()
+
+func spawn_card():
+	var card = CardScene.instantiate()
+	if deck.size() != 0:
+		if deck.size() == 1:
+			var idx = 0
+			card.cardplayed.connect(play_card)
+			var card_type = deck[idx]
+			deck.remove_at(idx)
+			card.set_card_type(card_type)
+			add_child(card)
+			cardNodes.append(card)
+			card.position = playpos
+			print("you're decked")
+		else:
+			var idx = rng.randi_range(0,deck.size()-2)
+			card.cardplayed.connect(play_card)
+			var card_type = deck[idx]
+			deck.remove_at(idx)
+			card.set_card_type(card_type)
+			add_child(card)
+			cardNodes.append(card)
+			card.position = playpos
 
 func draw_card():
 	hand.append(deck[0])
@@ -76,12 +109,3 @@ func switch_states(new_state: State):
 		print("player 2 drawing")
 	elif new_state == State.END:
 		print("game over!")
-
-
-func _on_button_pressed():
-	var cardt = hand[0]
-	var dmg = Cards.Power[CardsEnum.get(cardt)]
-	monsterhp -= dmg
-	cardNodes.remove_at(0)
-	
-	pass # Replace with function body.

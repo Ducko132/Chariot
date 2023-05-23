@@ -1,8 +1,8 @@
 extends Node2D
 
 enum Cards {Bolt, GiftofFlame, LiftTheSky, TridentThrow, UndeadMarch}
-
 enum Resources {Money}
+signal cardplayed
 
 const ResourceMap = {
 	"Bolt": Resources.Money,
@@ -39,6 +39,9 @@ func set_card_type(type):
 	$Sprite2D.texture = texture 
 	$Sprite2D.scale = Vector2(0.3,0.3)
 
+func get_card_type(card):
+	return card.card_type
+
 func _on_mouse_entered():
 	$Sprite2D.scale = Vector2(0.5,0.5)
 	print("mouse in")
@@ -52,13 +55,13 @@ func _on_mouse_exited():
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		print("click")
-		print(self.name)
-		print("power", Power[self.card_type])
+		print("monster loses", Power[self.card_type], "health")
+		#state_machine.play_card()
+		cardplayed.emit(self)
+		self.queue_free()
 
 func _ready():
 	area = $Sprite2D/Area2D
 	area.input_event.connect(_input_event)
 	area.mouse_entered.connect(_on_mouse_entered)
 	area.mouse_exited.connect(_on_mouse_exited)
-	
-	#set_card_type("Bolt")
