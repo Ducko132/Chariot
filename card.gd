@@ -16,14 +16,6 @@ const ResourceMap = {
 	"UndeadMarch": Resources.Money,
 }
 
-const MonsterResourceMap = {
-	"Bolt": Resources.Money,
-	"GiftofFlame": Resources.Money,
-	"LiftTheSky": Resources.Money,
-	"TridentThrow": Resources.Money,
-	"UndeadMarch": Resources.Money,
-}
-
 const Power = {
 	"Bolt": 6,
 	"GiftofFlame": 3,
@@ -32,24 +24,7 @@ const Power = {
 	"UndeadMarch": 2,
 }
 
-const MonsterPower = {
-	"Bolt": 6,
-	"GiftofFlame": 3,
-	"LiftTheSky": 8,
-	"TridentThrow": 4,
-	"UndeadMarch": 2,
-}
-
 const Art = {
-	"Bolt": "res://Art/bolt.png",
-	"GiftofFlame": "res://Art/GiftofFlame.png",
-	"LiftTheSky": "res://Art/LiftTheSky.png",
-	"TridentThrow": "res://Art/tridentThrow.png",
-	"UndeadMarch": "res://Art/UndeadMarch.png",
-	"Blank": "res://Art/blank.png",
-}
-
-const MonsterArt = {
 	"Bolt": "res://Art/bolt.png",
 	"GiftofFlame": "res://Art/GiftofFlame.png",
 	"LiftTheSky": "res://Art/LiftTheSky.png",
@@ -93,6 +68,7 @@ func _input_event(viewport, event, shape_idx):
 		if event is InputEventMouseButton and event.pressed:
 			print("click")
 			print("monster loses", Power[self.card_type], "health")
+
 			cardplayed.emit(self)
 			self.queue_free()
 

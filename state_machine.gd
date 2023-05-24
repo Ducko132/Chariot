@@ -19,6 +19,7 @@ var rng = RandomNumberGenerator.new()
 
 var playerhp = 20
 var monsterhp = 20
+var monster2ndchance =true
 
 # node to represent card (make copies manually)
 
@@ -137,9 +138,54 @@ func switch_states(new_state: State):
 		print("player 1 playing cards now")
 	elif new_state == State.MONSTERTURN:
 		# monster does damage to the player
-		playerhp -= 4
-		print("playerhealth: ", playerhp)
+		# put monster moves here!!!
+		if monsterhp >= 20:
+			var rand = rng.randi_range(1,3)
+			print("rand",rand)
+			if rand == 1:
+				playerhp -= 1
+				print("small attack")
+			elif rand == 2:
+				playerhp -= 2
+				print("small attack")
+			elif rand == 3:
+				playerhp -= 3
+				print("med attack")
+		elif monsterhp >= 10:
+			var rand = rng.randi_range(1,3)
+			print("rand",rand)
+			if rand == 1:
+				monsterhp += 5
+				print("heal")
+			elif rand == 2:
+				playerhp -= 5
+				print("heavy attack")
+			elif rand == 3:
+				playerhp -= 3
+				monsterhp += 3
+				print("life drain")
+		elif monsterhp >= 5:
+			var rand = rng.randi_range(1,3)
+			print("rand",rand)
+			if rand == 1:
+				monsterhp += 7
+				playerhp -= 2
+				print("giga heal drain")
+			elif rand == 2:
+				monsterhp += 5
+				playerhp -= 4
+				print("vampiric fang")
+			elif rand == 3:
+				playerhp -= 10
+				print("final gambit")
+		elif monsterhp >= 1 and monster2ndchance:
+			monster2ndchance = false
+			monsterhp += 40
+			print("REBIRTH")
+		else:
+			print("monster out of energy")
+		#print("playerhealth: ", playerhp)
 		switch_states(State.PLAYER1_DRAW)
-		print("player 2 drawing")
+		print("MONSTER TURN")
 	elif new_state == State.END:
 		print("game over!")
