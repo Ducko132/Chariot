@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqba6qys75ste"]
+
+[ext_resource type="Script" path="res://UI.gd" id="1_ba8qr"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ba8qr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerHealth" type="Label" parent="CanvasLayer"]
+offset_left = 990.0
+offset_top = 612.0
+offset_right = 1063.0
+offset_bottom = 635.0
+
+[node name="MonsterHealth" type="Label" parent="CanvasLayer"]
+offset_left = 165.0
+offset_top = 78.0
+offset_right = 205.0
+offset_bottom = 101.0
+
+[node name="PassTurn" type="Button" parent="CanvasLayer"]
+offset_left = 500.0
+offset_top = 231.0
+offset_right = 581.0
+offset_bottom = 269.0
+text = "pass turn"
+
+[connection signal="pressed" from="CanvasLayer/PassTurn" to="." method="_on_pass_turn_pressed"]
