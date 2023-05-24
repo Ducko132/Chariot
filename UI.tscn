@@ -26,10 +26,9 @@ offset_right = 205.0
 offset_bottom = 101.0
 
 [node name="PassTurn" type="Button" parent="CanvasLayer"]
-offset_left = 500.0
-offset_top = 231.0
-offset_right = 581.0
-offset_bottom = 269.0
-text = "pass turn"
+offset_left = 893.0
+offset_top = 526.0
+offset_right = 974.0
+offset_bottom = 564.0
 
 [connection signal="pressed" from="CanvasLayer/PassTurn" to="." method="_on_pass_turn_pressed"]
