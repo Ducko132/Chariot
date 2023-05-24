@@ -16,6 +16,14 @@ const ResourceMap = {
 	"UndeadMarch": Resources.Money,
 }
 
+const Cost = {
+	"Bolt": 3,
+	"GiftofFlame": 1,
+	"LiftTheSky": 4,
+	"TridentThrow": 2,
+	"UndeadMarch": 1,
+}
+
 const Power = {
 	"Bolt": 6,
 	"GiftofFlame": 3,
@@ -62,15 +70,19 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	$Sprite2D.scale = Vector2(0.3,0.3)
-
+	
 func _input_event(viewport, event, shape_idx):
 	if StateMachine.curstate == StateMachine.State.PLAYER1_PLAY:
-		if event is InputEventMouseButton and event.pressed:
-			print("click")
-			print("monster loses", Power[self.card_type], "health")
-
-			cardplayed.emit(self)
-			self.queue_free()
+			if event is InputEventMouseButton and event.pressed:
+				if StateMachine.playermana >= Cost[self.card_type]:
+					StateMachine.playermana -= Cost[self.card_type]
+					print(Cost[self.card_type])
+					print("click")
+					print("monster loses", Power[self.card_type], "health")
+					cardplayed.emit(self)
+					self.queue_free()
+				else:
+					print("you don't got enough to play this bro")
 
 func _ready():
 	area = $Sprite2D/Area2D

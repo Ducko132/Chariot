@@ -3,6 +3,7 @@ var CardScene = preload("res://card.tscn")
 var Cards = preload("res://card.gd")
 var UI = preload("res://UI.tscn")
 var CardsEnum = Cards.Cards
+var Cost = Cards.Cost
 var Power = Cards.Power
 var Art = Cards.Art
 
@@ -18,8 +19,12 @@ var cardNodes = []
 var rng = RandomNumberGenerator.new()
 
 var playerhp = 20
+var playermana = 4
+var manaperturn = 1
+
 var monsterhp = 20
-var monster2ndchance =true
+var monster2ndchance = true
+var curmonstermove
 
 # node to represent card (make copies manually)
 
@@ -134,6 +139,8 @@ func switch_states(new_state: State):
 		print("player 1 drawing")
 		#spawn_card()
 		switch_states(State.PLAYER1_PLAY)
+		playermana += manaperturn
+		manaperturn += 1
 	elif new_state == State.PLAYER1_PLAY:
 		print("player 1 playing cards now")
 	elif new_state == State.MONSTERTURN:
@@ -143,47 +150,49 @@ func switch_states(new_state: State):
 			var rand = rng.randi_range(1,3)
 			print("rand",rand)
 			if rand == 1:
-				playerhp -= 1
-				print("small attack")
-			elif rand == 2:
-				playerhp -= 2
-				print("small attack")
-			elif rand == 3:
 				playerhp -= 3
-				print("med attack")
+				curmonstermove = "small attack (3dmg)"
+			elif rand == 2:
+				playerhp -= 3
+				curmonstermove = "small attack (4dmg)"
+			elif rand == 3:
+				playerhp -= 4
+				curmonstermove = "medium attack (4dmg)"
 		elif monsterhp >= 10:
 			var rand = rng.randi_range(1,3)
 			print("rand",rand)
 			if rand == 1:
 				monsterhp += 5
-				print("heal")
+				curmonstermove = "heal (+5hp)"
 			elif rand == 2:
 				playerhp -= 5
-				print("heavy attack")
+				curmonstermove = "heavy attack (5dmg)"
 			elif rand == 3:
 				playerhp -= 3
 				monsterhp += 3
-				print("life drain")
+				curmonstermove = "monster uses life drain (3dmg, +3hp)"
 		elif monsterhp >= 5:
 			var rand = rng.randi_range(1,3)
 			print("rand",rand)
 			if rand == 1:
 				monsterhp += 7
 				playerhp -= 2
-				print("giga heal drain")
+				curmonstermove = "monster uses heal-drain (2dmg, +7hp)"
 			elif rand == 2:
 				monsterhp += 5
 				playerhp -= 4
-				print("vampiric fang")
+				curmonstermove = "monster uses it's vampiric fang (5dmg, +4hp)"
 			elif rand == 3:
 				playerhp -= 10
-				print("final gambit")
+				curmonstermove = "it's final gambit. (10dmg)"
 		elif monsterhp >= 1 and monster2ndchance:
 			monster2ndchance = false
 			monsterhp += 40
-			print("REBIRTH")
+			curmonstermove = "MONSTER USES IT'S 2ND CHANCE (+40hp)"
 		else:
-			print("monster out of energy")
+			monsterhp += 5
+			playermana -= 5
+			curmonstermove = "monster tries to recover (+5hp, -5mana)"
 		#print("playerhealth: ", playerhp)
 		switch_states(State.PLAYER1_DRAW)
 		print("MONSTER TURN")

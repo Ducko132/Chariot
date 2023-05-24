@@ -14,10 +14,10 @@ script = ExtResource("1_ba8qr")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerHealth" type="Label" parent="CanvasLayer"]
-offset_left = 990.0
-offset_top = 612.0
-offset_right = 1063.0
-offset_bottom = 635.0
+offset_left = 825.0
+offset_top = 617.0
+offset_right = 898.0
+offset_bottom = 640.0
 
 [node name="MonsterHealth" type="Label" parent="CanvasLayer"]
 offset_left = 165.0
