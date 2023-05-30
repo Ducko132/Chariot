@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bex3objwi5rvi"]
+
+[ext_resource type="Script" path="res://monster.gd" id="1_hy4g3"]
+[ext_resource type="Texture2D" uid="uid://dp8xkbaee72po" path="res://Art/MonsterArt/Cyclops/CyclopsTakeDamage.PNG" id="2_oxiia"]
+[ext_resource type="Texture2D" uid="uid://cegg7mtki7h5i" path="res://Art/MonsterArt/Cyclops/CyclopsIdle1.PNG" id="2_uf4qw"]
+[ext_resource type="Texture2D" uid="uid://dakcetuigy5gs" path="res://Art/MonsterArt/Cyclops/CyclopsIdle2.PNG" id="3_d283i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_frh0e"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("2_oxiia")
+}],
+"loop": true,
+"name": &"cyclops_damage",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uf4qw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d283i")
+}],
+"loop": true,
+"name": &"cyclops_idle",
+"speed": 5.0
+}]
+
+[node name="monster" type="Node2D"]
+script = ExtResource("1_hy4g3")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(788, 206)
+sprite_frames = SubResource("SpriteFrames_frh0e")
+animation = &"cyclops_damage"
+
+[connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

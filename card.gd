@@ -1,6 +1,6 @@
 extends Node2D
 
-enum Cards {Bolt, GiftofFlame, LiftTheSky, TridentThrow, UndeadMarch}
+enum Cards {Sunburn, Sunscreen, PrismaticRay, Bolt, GiftofFlame, LiftTheSky, TridentThrow, UndeadMarch}
 enum MonsterCards {Bolt, GiftofFlame, LiftTheSky, TridentThrow, UndeadMarch}
 
 enum Resources {Money}

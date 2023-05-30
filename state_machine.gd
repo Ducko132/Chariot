@@ -6,6 +6,7 @@ var CardsEnum = Cards.Cards
 var Cost = Cards.Cost
 var Power = Cards.Power
 var Art = Cards.Art
+signal monsterhplost
 
 #var MonsterCardsEnum = Cards.MonsterCards
 #var MonsterPower = Cards.MonsterPower
@@ -81,6 +82,8 @@ func play_card(card):
 		var idx = hand.find(card)
 		print("gklahglkdjafklsajf", card.position)
 		monsterhp -= Power[card.get_card_type(card)]
+		if Power[card.get_card_type(card)] > 0:
+			monsterhplost.emit()
 		playpos = card.position
 		spawn_card()
 
@@ -181,7 +184,7 @@ func switch_states(new_state: State):
 			elif rand == 2:
 				monsterhp += 5
 				playerhp -= 4
-				curmonstermove = "monster uses it's vampiric fang (5dmg, +4hp)"
+				curmonstermove = "monster uses it's vampiric bite (5dmg, +4hp)"
 			elif rand == 3:
 				playerhp -= 10
 				curmonstermove = "it's final gambit. (10dmg)"
