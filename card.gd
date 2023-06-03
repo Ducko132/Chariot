@@ -1,12 +1,13 @@
 extends Node2D
 
-enum Cards {Sunburn, Sunscreen, PrismaticRay, Bolt, GiftofFlame, LiftTheSky, TridentThrow, UndeadMarch}
+enum Cards {Bolt, GiftofFlame, LiftTheSky, TridentThrow, UndeadMarch}
 enum MonsterCards {Bolt, GiftofFlame, LiftTheSky, TridentThrow, UndeadMarch}
 
 enum Resources {Money}
 enum MonsterResources {Money}
 
 signal cardplayed
+@onready var game_board = get_parent()
 
 const ResourceMap = {
 	"Bolt": Resources.Money,

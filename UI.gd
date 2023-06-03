@@ -1,5 +1,6 @@
 extends Control
 
+@onready var game_board = get_parent()
 var firstturn = true
 func _on_pass_turn_pressed():
 	StateMachine.next_state()
@@ -14,5 +15,5 @@ func _process(delta):
 	if !firstturn:
 		$CanvasLayer/PassTurn.text = "Next Turn"
 		
-	$CanvasLayer/MonsterHealth.text = "MONSTER HEALTH: " + str(StateMachine.monsterhp) + " MONSTER DOES: " + str(StateMachine.curmonstermove)
+	$CanvasLayer/MonsterHealth.text = "MONSTER HEALTH: " + str(game_board.monsterhp) + " MONSTER DOES: " + str(StateMachine.curmonstermove)
 	$CanvasLayer/PlayerHealth.text = "PLAYER HEALTH: " + str(StateMachine.playerhp) + " PLAYER MANA: " + str(StateMachine.playermana)

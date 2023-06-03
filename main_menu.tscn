@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://n7li7nnjgovn"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_asndg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kt0le"]
+font_size = 100
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_asndg")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 394.0
+offset_top = 121.0
+offset_right = 694.0
+offset_bottom = 261.0
+text = "Helios"
+label_settings = SubResource("LabelSettings_kt0le")
+horizontal_alignment = 1
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 2
+offset_left = 486.0
+offset_top = 267.0
+offset_right = 610.0
+offset_bottom = 327.0
+text = "Play"
+
+[node name="Tutorial" type="Button" parent="."]
+layout_mode = 2
+offset_left = 488.0
+offset_top = 348.0
+offset_right = 612.0
+offset_bottom = 408.0
+text = "Tutorial"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Tutorial" to="." method="_on_tutorial_pressed"]
