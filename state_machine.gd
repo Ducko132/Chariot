@@ -3,11 +3,15 @@ var CardScene = preload("res://card.tscn")
 var Cards = preload("res://card.gd")
 var UI = preload("res://UI.tscn")
 var gameboard = preload("res://game_board.tscn")
+var tutorial = preload("res://tutorial.tscn")
 var CardsEnum = Cards.Cards
 var Cost = Cards.Cost
 var Power = Cards.Power
 var Art = Cards.Art
+var GameLevel = null
 signal monsterhplost
+signal monsterturn
+var pickCount = 2
 
 #var MonsterCardsEnum = Cards.MonsterCards
 #var MonsterPower = Cards.MonsterPower
@@ -32,98 +36,43 @@ var curmonstermove
 
 var deck = []
 var hand = []
+var pickarray = []
 
 var game_board = null
+
 func _ready():
+	for Card in CardsEnum:
+			pickarray.append(Card)
 	pass
 
-func start_game():
-	#game_board = get_node("/root/GameBoard")
-	game_board = gameboard.instantiate()
-	get_parent().add_child(game_board)
-	print("line 42")
-	var NewUI = UI.instantiate()
-	game_board.add_child(NewUI)
-#	rng.randomize()
-#
-#	for i in 8:
-#		for Card in CardsEnum:
-#			deck.append(Card)
-#
-#	print("deck",deck)
-#	print("we're starting")
-#
-#	for i in 3:
-#		var idx = rng.randi_range(0,deck.size()-1)
-#		hand.append(deck[idx])
-#		deck.remove_at(idx)
-#
-#	#print("hand",hand)
-#	#print(hand[2])
-#	var testcard = hand[2]
-#	#print("power",Cards.Power[CardsEnum.get(testcard)])
-#
-#
-#	for i in 3:
-#		var card = CardScene.instantiate()
-#		card.reveal()
-#		card.cardplayed.connect(play_card)
-#		var card_type = hand[i]
-#		card.set_card_type(card_type)
-#		game_board.add_child(card)
-#		cardNodes.append(card)
-#		card.position = Vector2((i*200)+350,525)
-#		print(card.position)
-	pass
+func start_game(i):
+	if game_board != null:
+		game_board.queue_free()
+	pickCount = 2
+	GameLevel = i
+	if i == 0:
+		game_board = tutorial.instantiate()
+		get_parent().add_child(game_board)
+		print("level 1 instantiated")
+		var NewUI = UI.instantiate()
+		game_board.add_child(NewUI)
+	if i == 1:
+		game_board = gameboard.instantiate()
+		get_parent().add_child(game_board)
+		print("level 1 instantiated")
+		var NewUI = UI.instantiate()
+		game_board.add_child(NewUI)
 
 func _process(delta):
-	#$Label.text = "monster health: " + str(monsterhp)
-	if monsterhp <= 0:
+	if monsterhp <= 0 && curstate != State.END:
 		curstate = State.END
+		switch_states(State.END)
 		print("GG PLAYER!")
 	
-	if playerhp <= 0:
+	if playerhp <= 0 && curstate != State.END:
 		curstate = State.END
+		switch_states(State.END)
 		print("Better luck next time")
-
-#func play_card(card):
-#	if curstate == State.PLAYER1_PLAY:
-#		var idx = hand.find(card)
-#		print("gklahglkdjafklsajf", card.position)
-#		monsterhp -= Power[card.get_card_type(card)]
-#		if Power[card.get_card_type(card)] > 0:
-#			monsterhplost.emit()
-#		playpos = card.position
-#		spawn_card()
-#
-#func spawn_card():
-#	var card = CardScene.instantiate()
-#	card.reveal()
-#	if deck.size() != 0:
-#		if deck.size() == 1:
-#			var idx = 0
-#			card.cardplayed.connect(play_card)
-#			var card_type = deck[idx]
-#			deck.remove_at(idx)
-#			card.set_card_type(card_type)
-#			game_board.add_child(card)
-#			cardNodes.append(card)
-#			card.position = playpos
-#			print("you're decked")
-#		else:
-#			var idx = rng.randi_range(0,deck.size()-2)
-#			card.cardplayed.connect(play_card)
-#			var card_type = deck[idx]
-#			deck.remove_at(idx)
-#			card.set_card_type(card_type)
-#			game_board.add_child(card)
-#			cardNodes.append(card)
-#			card.position = playpos
-#
-#func draw_card():
-#	hand.append(deck[0])
-#	deck.remove_at(0)
-#	pass
 
 func next_state():
 	if curstate == State.PLAYER1_DRAW:
@@ -210,4 +159,19 @@ func switch_states(new_state: State):
 		switch_states(State.PLAYER1_DRAW)
 		print("MONSTER TURN")
 	elif new_state == State.END:
-		print("game over!")
+		await get_tree().create_timer(1).timeout
+		rng.randomize()
+		for child in game_board.get_children():
+			child.visible = false
+		
+		for i in 3:
+			var card = CardScene.instantiate()
+			card.reveal()
+			var rand = rng.randi_range(0,4)
+			var card_type = pickarray[rand]
+			card.set_card_type(card_type)
+			game_board.add_child(card)
+			cardNodes.append(card)
+			card.position = Vector2((i*200)+350,325)
+			print(card.position)
+		

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clisbnqlxrirq"
-path="res://.godot/imported/GiftofFlame.png-bc834d5a4ffa7a0ad260c93ea983606d.ctex"
+uid="uid://qbq68on4282w"
+path="res://.godot/imported/bolt.png-755367a94e110b73f0d8a5294490233a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/GiftofFlame.png"
-dest_files=["res://.godot/imported/GiftofFlame.png-bc834d5a4ffa7a0ad260c93ea983606d.ctex"]
+source_file="res://Art/CardArt/bolt.png"
+dest_files=["res://.godot/imported/bolt.png-755367a94e110b73f0d8a5294490233a.ctex"]
 
 [params]
 

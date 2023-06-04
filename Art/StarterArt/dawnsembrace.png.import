@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwh25g6j8twvh"
-path="res://.godot/imported/blank.png-b3f760ab0aaeacc63fbe3b175208d2b5.ctex"
+uid="uid://b003yvk1f74yo"
+path="res://.godot/imported/dawnsembrace.png-fafd14a808915012cb1bd5e885b4da54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/blank.png"
-dest_files=["res://.godot/imported/blank.png-b3f760ab0aaeacc63fbe3b175208d2b5.ctex"]
+source_file="res://Art/StarterArt/dawnsembrace.png"
+dest_files=["res://.godot/imported/dawnsembrace.png-fafd14a808915012cb1bd5e885b4da54.ctex"]
 
 [params]
 

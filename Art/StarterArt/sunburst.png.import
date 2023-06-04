@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5gpgc6y0vree"
-path="res://.godot/imported/backgroundgreektemp.PNG-7f5cb617a2b55125cd1c2ad1e095254b.ctex"
+uid="uid://b3hc7pvpjwwus"
+path="res://.godot/imported/sunburst.png-d8f84136dadd04af827371b331750158.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/backgroundgreektemp.PNG"
-dest_files=["res://.godot/imported/backgroundgreektemp.PNG-7f5cb617a2b55125cd1c2ad1e095254b.ctex"]
+source_file="res://Art/StarterArt/sunburst.png"
+dest_files=["res://.godot/imported/sunburst.png-d8f84136dadd04af827371b331750158.ctex"]
 
 [params]
 

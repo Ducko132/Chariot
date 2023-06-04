@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6ad7xcx0l32y"
-path="res://.godot/imported/tridentThrow.png-d93675a372c4e3c06c88ab002a69e1da.ctex"
+uid="uid://bdu5103ladqjh"
+path="res://.godot/imported/tridentThrow.png-0e4ed0ac5e9fe4855004ed037aee7185.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/tridentThrow.png"
-dest_files=["res://.godot/imported/tridentThrow.png-d93675a372c4e3c06c88ab002a69e1da.ctex"]
+source_file="res://Art/CardArt/tridentThrow.png"
+dest_files=["res://.godot/imported/tridentThrow.png-0e4ed0ac5e9fe4855004ed037aee7185.ctex"]
 
 [params]
 

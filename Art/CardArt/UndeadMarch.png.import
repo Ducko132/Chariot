@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvbhq2cet2w2y"
-path="res://.godot/imported/LiftTheSky.png-47d85ac78425746c608f8545280b0d7d.ctex"
+uid="uid://cxh8fpjo65wra"
+path="res://.godot/imported/UndeadMarch.png-24a48520bfbe91c765d46e6edb8192c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/LiftTheSky.png"
-dest_files=["res://.godot/imported/LiftTheSky.png-47d85ac78425746c608f8545280b0d7d.ctex"]
+source_file="res://Art/CardArt/UndeadMarch.png"
+dest_files=["res://.godot/imported/UndeadMarch.png-24a48520bfbe91c765d46e6edb8192c4.ctex"]
 
 [params]
 

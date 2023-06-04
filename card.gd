@@ -1,15 +1,21 @@
 extends Node2D
 
 enum Cards {Bolt, GiftofFlame, LiftTheSky, TridentThrow, UndeadMarch}
-enum MonsterCards {Bolt, GiftofFlame, LiftTheSky, TridentThrow, UndeadMarch}
+enum StarterCards {SolarFlare, DawnsEmbrace, Sunburst}
+#enum MonsterCards {Bolt, GiftofFlame, LiftTheSky, TridentThrow, UndeadMarch}
 
 enum Resources {Money}
-enum MonsterResources {Money}
+#enum MonsterResources {Money}
 
 signal cardplayed
+signal cardpicked
 @onready var game_board = get_parent()
 
+# this resourcemap is highkey useless
 const ResourceMap = {
+	"SolarFlare": Resources.Money,
+	"Sunburst": Resources.Money,
+	"DawnsEmbrace": Resources.Money,
 	"Bolt": Resources.Money,
 	"GiftofFlame": Resources.Money,
 	"LiftTheSky": Resources.Money,
@@ -18,7 +24,10 @@ const ResourceMap = {
 }
 
 const Cost = {
-	"Bolt": 3,
+	"SolarFlare": 2,
+	"Sunburst": 1,
+	"DawnsEmbrace": 1,
+	"Bolt": 2,
 	"GiftofFlame": 1,
 	"LiftTheSky": 4,
 	"TridentThrow": 2,
@@ -26,25 +35,42 @@ const Cost = {
 }
 
 const Power = {
+	"SolarFlare": 3,
+	"Sunburst": 3,
+	"DawnsEmbrace": 0,
 	"Bolt": 6,
 	"GiftofFlame": 3,
-	"LiftTheSky": 8,
+	"LiftTheSky": 9,
 	"TridentThrow": 4,
 	"UndeadMarch": 2,
 }
 
+const Heal = {
+	"SolarFlare": 0,
+	"Sunburst": -1,
+	"DawnsEmbrace": 2,
+	"Bolt": -3,
+	"GiftofFlame": 1,
+	"LiftTheSky": 0,
+	"TridentThrow": 0,
+	"UndeadMarch": 0,
+}
+
 const Art = {
-	"Bolt": "res://Art/bolt.png",
-	"GiftofFlame": "res://Art/GiftofFlame.png",
-	"LiftTheSky": "res://Art/LiftTheSky.png",
-	"TridentThrow": "res://Art/tridentThrow.png",
-	"UndeadMarch": "res://Art/UndeadMarch.png",
-	"Blank": "res://Art/blank.png",
+	"SolarFlare": "res://Art/StarterArt/solarflare.png",
+	"Sunburst": "res://Art/StarterArt/sunburst.png",
+	"DawnsEmbrace": "res://Art/StarterArt/dawnsembrace.png",
+	"Bolt": "res://Art/CardArt/bolt.png",
+	"GiftofFlame": "res://Art/CardArt/GiftofFlame.png",
+	"LiftTheSky": "res://Art/CardArt/LiftTheSky.png",
+	"TridentThrow": "res://Art/CardArt/tridentThrow.png",
+	"UndeadMarch": "res://Art/CardArt/UndeadMarch.png",
+	"Blank": "res://Art/CardArt/blank.png",
 }
 
 var sprite: Sprite2D
 var area: Area2D
-var card_type
+var card_type: String
 var revealed = false
 var SpriteTexture
 
@@ -58,7 +84,7 @@ func set_card_type(type):
 		$Sprite2D.texture = load(Art["Blank"])
 	else:
 		$Sprite2D.texture = texture 
-	$Sprite2D.scale = Vector2(0.3,0.3)
+	$Sprite2D.scale = Vector2(0.7,0.7)
 
 func reveal():
 	revealed = true
@@ -67,10 +93,10 @@ func get_card_type(card):
 	return card.card_type
 
 func _on_mouse_entered():
-	$Sprite2D.scale = Vector2(0.5,0.5)
+	$Sprite2D.scale = Vector2(0.8,0.8)
 
 func _on_mouse_exited():
-	$Sprite2D.scale = Vector2(0.3,0.3)
+	$Sprite2D.scale = Vector2(0.7,0.7)
 	
 func _input_event(viewport, event, shape_idx):
 	if StateMachine.curstate == StateMachine.State.PLAYER1_PLAY:
@@ -84,6 +110,18 @@ func _input_event(viewport, event, shape_idx):
 					self.queue_free()
 				else:
 					print("you don't got enough to play this bro")
+	elif StateMachine.curstate == StateMachine.State.END:
+		if event is InputEventMouseButton and event.pressed:
+			if StateMachine.pickCount > 0:
+				print("pre-add", StateMachine.deck)
+				StateMachine.deck.append(self.card_type)
+				StateMachine.pickCount -= 1
+				if StateMachine.pickCount == 0:
+					StateMachine.GameLevel += 1
+					StateMachine.start_game(StateMachine.GameLevel)
+				print("post-add", StateMachine.deck)
+				self.queue_free()
+		pass
 
 func _ready():
 	area = $Sprite2D/Area2D

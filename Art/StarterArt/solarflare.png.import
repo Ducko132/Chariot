@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxh8fpjo65wra"
-path="res://.godot/imported/UndeadMarch.png-dd2dda999053c21cd585f8e219283541.ctex"
+uid="uid://ca7dtnvycluci"
+path="res://.godot/imported/solarflare.png-c4e4e0712801475bbaad264c855b0e61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UndeadMarch.png"
-dest_files=["res://.godot/imported/UndeadMarch.png-dd2dda999053c21cd585f8e219283541.ctex"]
+source_file="res://Art/StarterArt/solarflare.png"
+dest_files=["res://.godot/imported/solarflare.png-c4e4e0712801475bbaad264c855b0e61.ctex"]
 
 [params]
 
