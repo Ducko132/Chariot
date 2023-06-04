@@ -7,6 +7,7 @@ var CardsEnum = Cards.StarterCards
 var Cost = Cards.Cost
 var Power = Cards.Power
 var Heal = Cards.Heal
+var Mana = Cards.ManaPerTurn
 var Art = Cards.Art
 signal monsterhplost
 var playpos
@@ -56,6 +57,7 @@ func play_card(card):
 		print("gklahglkdjafklsajf", card.position)
 		StateMachine.monsterhp -= Power[card.get_card_type(card)]
 		StateMachine.playerhp += Heal[card.get_card_type(card)]
+		StateMachine.manaperturn += Mana[card.get_card_type(card)]
 		if Power[card.get_card_type(card)] > 0:
 			monsterhplost.emit()
 		playpos = card.position
