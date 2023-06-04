@@ -42,14 +42,18 @@ var game_board = null
 
 func _ready():
 	for Card in CardsEnum:
-			pickarray.append(Card)
+		pickarray.append(Card)
 	pass
 
 func start_game(i):
+	monsterhp = 20
+	playerhp = 20
+	
 	if game_board != null:
 		game_board.queue_free()
 	pickCount = 2
 	GameLevel = i
+	
 	if i == 0:
 		game_board = tutorial.instantiate()
 		get_parent().add_child(game_board)

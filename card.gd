@@ -40,7 +40,7 @@ const Power = {
 	"DawnsEmbrace": 0,
 	"Bolt": 6,
 	"GiftofFlame": 3,
-	"LiftTheSky": 9,
+	"LiftTheSky": 8,
 	"TridentThrow": 4,
 	"UndeadMarch": 2,
 }
@@ -50,8 +50,19 @@ const Heal = {
 	"Sunburst": -1,
 	"DawnsEmbrace": 2,
 	"Bolt": -3,
-	"GiftofFlame": 1,
-	"LiftTheSky": 0,
+	"GiftofFlame": 2,
+	"LiftTheSky": -1,
+	"TridentThrow": 0,
+	"UndeadMarch": 0,
+}
+
+const ManaPerTurn = {
+	"SolarFlare": 0,
+	"Sunburst": 0,
+	"DawnsEmbrace": 0,
+	"Bolt": 0,
+	"GiftofFlame": -1,
+	"LiftTheSky": 2,
 	"TridentThrow": 0,
 	"UndeadMarch": 0,
 }

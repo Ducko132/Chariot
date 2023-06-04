@@ -3,7 +3,7 @@ var CardScene = preload("res://card.tscn")
 var Cards = preload("res://card.gd")
 var UI = preload("res://UI.tscn")
 var gameboard = preload("res://game_board.tscn")
-var CardsEnum = Cards.Cards
+var CardsEnum = Cards.StarterCards
 var Cost = Cards.Cost
 var Power = Cards.Power
 var Heal = Cards.Heal
@@ -33,7 +33,7 @@ var hand = []
 func _ready():
 	rng.randomize()
 	
-	for i in 8:
+	for i in 5:
 		for Card in CardsEnum:
 			StateMachine.deck.append(Card)
 	
@@ -56,6 +56,7 @@ func _ready():
 		card.position = Vector2((i*200)+350,525)
 		print(card.position)
 
+@warning_ignore("unused_parameter")
 func _process(delta):
 	if StateMachine.monsterhp <= 0:
 		StateMachine.curstate = StateMachine.State.END
@@ -63,6 +64,7 @@ func _process(delta):
 
 func play_card(card):
 	if StateMachine.curstate == StateMachine.State.PLAYER1_PLAY:
+		@warning_ignore("unused_variable")
 		var idx = hand.find(card)
 		print("gklahglkdjafklsajf", card.position)
 		StateMachine.monsterhp -= Power[card.get_card_type(card)]
