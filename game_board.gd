@@ -9,24 +9,11 @@ var Power = Cards.Power
 var Heal = Cards.Heal
 var Art = Cards.Art
 signal monsterhplost
-
-#var MonsterCardsEnum = Cards.MonsterCards
-#var MonsterPower = Cards.MonsterPower
-#var MonsterArt = Cards.MonsterArt
-
 var playpos
 var cardNodes = []
 var rng = RandomNumberGenerator.new()
-
-#var playerhp = 20
-var playermana = 4
-var manaperturn = 1
-
-#var monsterhp = 20
 var monster2ndchance = true
 var curmonstermove
-
-# node to represent card (make copies manually)
 
 var hand = []
 
@@ -60,7 +47,7 @@ func _ready():
 func _process(delta):
 	if StateMachine.monsterhp <= 0:
 		StateMachine.curstate = StateMachine.State.END
-		print("GG PLAYER!")
+		#print("GG PLAYER!")
 
 func play_card(card):
 	if StateMachine.curstate == StateMachine.State.PLAYER1_PLAY:

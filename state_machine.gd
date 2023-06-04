@@ -8,7 +8,7 @@ var CardsEnum = Cards.Cards
 var Cost = Cards.Cost
 var Power = Cards.Power
 var Art = Cards.Art
-var GameLevel = null
+var GameLevel
 signal monsterhplost
 signal monsterturn
 var pickCount = 2
@@ -46,13 +46,18 @@ func _ready():
 	pass
 
 func start_game(i):
+	GameLevel = i
+	print("GameLevel:",GameLevel)
+	switch_states(State.PLAYER1_DRAW)
+	manaperturn = 1
+	playermana = 4
 	monsterhp = 20
 	playerhp = 20
 	
 	if game_board != null:
 		game_board.queue_free()
 	pickCount = 2
-	GameLevel = i
+	
 	
 	if i == 0:
 		game_board = tutorial.instantiate()
@@ -112,57 +117,58 @@ func switch_states(new_state: State):
 		# monster does damage to the player
 		# put monster moves here!!!
 		# maybe states
-		if monsterhp >= 20:
-			var rand = rng.randi_range(1,3)
-			print("rand",rand)
-			if rand == 1:
-				playerhp -= 3
-				curmonstermove = "small attack (3dmg)"
-			elif rand == 2:
-				playerhp -= 3
-				curmonstermove = "small attack (4dmg)"
-			elif rand == 3:
-				playerhp -= 4
-				curmonstermove = "medium attack (4dmg)"
-		elif monsterhp >= 10:
-			var rand = rng.randi_range(1,3)
-			print("rand",rand)
-			if rand == 1:
+		if GameLevel == 1:
+			if monsterhp >= 20:
+				var rand = rng.randi_range(1,3)
+				print("rand",rand)
+				if rand == 1:
+					playerhp -= 3
+					curmonstermove = "small attack (3dmg)"
+				elif rand == 2:
+					playerhp -= 3
+					curmonstermove = "small attack (4dmg)"
+				elif rand == 3:
+					playerhp -= 4
+					curmonstermove = "medium attack (4dmg)"
+			elif monsterhp >= 10:
+				var rand = rng.randi_range(1,3)
+				print("rand",rand)
+				if rand == 1:
+					monsterhp += 5
+					curmonstermove = "heal (+5hp)"
+				elif rand == 2:
+					playerhp -= 5
+					curmonstermove = "heavy attack (5dmg)"
+				elif rand == 3:
+					playerhp -= 3
+					monsterhp += 3
+					curmonstermove = "monster uses life drain (3dmg, +3hp)"
+			elif monsterhp >= 5:
+				var rand = rng.randi_range(1,3)
+				print("rand",rand)
+				if rand == 1:
+					monsterhp += 7
+					playerhp -= 2
+					curmonstermove = "monster uses heal-drain (2dmg, +7hp)"
+				elif rand == 2:
+					monsterhp += 5
+					playerhp -= 4
+					curmonstermove = "monster uses it's vampiric bite (5dmg, +4hp)"
+				elif rand == 3:
+					playerhp -= 10
+					curmonstermove = "it's final gambit. (10dmg)"
+			elif monsterhp >= 1 and monster2ndchance:
+				monster2ndchance = false
+				monsterhp += 40
+				curmonstermove = "MONSTER USES IT'S 2ND CHANCE (+40hp)"
+			else:
 				monsterhp += 5
-				curmonstermove = "heal (+5hp)"
-			elif rand == 2:
-				playerhp -= 5
-				curmonstermove = "heavy attack (5dmg)"
-			elif rand == 3:
-				playerhp -= 3
-				monsterhp += 3
-				curmonstermove = "monster uses life drain (3dmg, +3hp)"
-		elif monsterhp >= 5:
-			var rand = rng.randi_range(1,3)
-			print("rand",rand)
-			if rand == 1:
-				monsterhp += 7
-				playerhp -= 2
-				curmonstermove = "monster uses heal-drain (2dmg, +7hp)"
-			elif rand == 2:
-				monsterhp += 5
-				playerhp -= 4
-				curmonstermove = "monster uses it's vampiric bite (5dmg, +4hp)"
-			elif rand == 3:
-				playerhp -= 10
-				curmonstermove = "it's final gambit. (10dmg)"
-		elif monsterhp >= 1 and monster2ndchance:
-			monster2ndchance = false
-			monsterhp += 40
-			curmonstermove = "MONSTER USES IT'S 2ND CHANCE (+40hp)"
-		else:
-			monsterhp += 5
-			playermana -= 5
-			curmonstermove = "monster tries to recover (+5hp, -5mana)"
-		#print("playerhealth: ", playerhp)
+				playermana -= 5
+				curmonstermove = "monster tries to recover (+5hp, -5mana)"
+			#print("playerhealth: ", playerhp)
 		switch_states(State.PLAYER1_DRAW)
 		print("MONSTER TURN")
-	elif new_state == State.END:
+	elif new_state == State.END && GameLevel != 0:
 		await get_tree().create_timer(1).timeout
 		rng.randomize()
 		for child in game_board.get_children():

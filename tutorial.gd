@@ -18,10 +18,6 @@ var playpos
 var cardNodes = []
 var rng = RandomNumberGenerator.new()
 
-#var playerhp = 20
-var playermana = 4
-var manaperturn = 1
-
 #var monsterhp = 20
 var monster2ndchance = true
 var curmonstermove
@@ -60,8 +56,9 @@ func _ready():
 @warning_ignore("unused_parameter")
 func _process(delta):
 	if StateMachine.monsterhp <= 0:
-		StateMachine.curstate = StateMachine.State.END
-		print("GG PLAYER!")
+		get_tree().change_scene_to_file("res://main_menu.tscn")
+		self.queue_free()
+		#print("GG PLAYER!")
 
 func play_card(card):
 	if StateMachine.curstate == StateMachine.State.PLAYER1_PLAY:
