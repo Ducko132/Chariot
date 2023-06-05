@@ -12,6 +12,7 @@ var GameLevel
 signal monsterhplost
 signal monsterturn
 var pickCount = 2
+var amplifier
 
 #var MonsterCardsEnum = Cards.MonsterCards
 #var MonsterPower = Cards.MonsterPower
@@ -35,6 +36,7 @@ var curmonstermove
 # node to represent card (make copies manually)
 
 var deck = []
+var truedeck = []
 var hand = []
 var pickarray = []
 
@@ -65,12 +67,14 @@ func start_game(i):
 		print("level 1 instantiated")
 		var NewUI = UI.instantiate()
 		game_board.add_child(NewUI)
+		#tempdeck = deck
 	if i == 1:
 		game_board = gameboard.instantiate()
 		get_parent().add_child(game_board)
 		print("level 1 instantiated")
 		var NewUI = UI.instantiate()
 		game_board.add_child(NewUI)
+		#tempdeck = deck
 
 func _process(delta):
 	if monsterhp <= 0 && curstate != State.END:
@@ -97,6 +101,12 @@ func next_state():
 	elif curstate == State.END:
 		print("game over!")
 
+func get_deck():
+	return deck
+
+func set_true_deck(deck):
+	truedeck = deck
+
 func switch_states(new_state: State):
 	curstate = new_state
 	state_time = 0.0
@@ -108,6 +118,8 @@ func switch_states(new_state: State):
 	elif new_state == State.PLAYER1_DRAW:
 		print("player 1 drawing")
 		switch_states(State.PLAYER1_PLAY)
+		#print("tempdeck",StateMachine.deck)
+		#print("realdeck",StateMachine.deck)
 		playermana += manaperturn
 		manaperturn += 1
 	elif new_state == State.PLAYER1_PLAY:
@@ -213,19 +225,24 @@ func switch_states(new_state: State):
 		switch_states(State.PLAYER1_DRAW)
 		print("MONSTER TURN")
 	elif new_state == State.END && GameLevel != 0:
-		await get_tree().create_timer(1).timeout
-		rng.randomize()
-		for child in game_board.get_children():
-			child.visible = false
-		
-		for i in 3:
-			var card = CardScene.instantiate()
-			card.reveal()
-			var rand = rng.randi_range(0,4)
-			var card_type = pickarray[rand]
-			card.set_card_type(card_type)
-			game_board.add_child(card)
-			cardNodes.append(card)
-			card.position = Vector2((i*200)+350,325)
-			print(card.position)
+		if playerhp <= 0:
+			print("you lost")
+			await get_tree().create_timer(1).timeout
+			get_tree().change_scene_to_file("res://main_menu.tscn")
+		else:
+			await get_tree().create_timer(1).timeout
+			rng.randomize()
+			for child in game_board.get_children():
+				child.visible = false
+			
+			for i in 3:
+				var card = CardScene.instantiate()
+				card.reveal()
+				var rand = rng.randi_range(0,4)
+				var card_type = pickarray[rand]
+				card.set_card_type(card_type)
+				game_board.add_child(card)
+				cardNodes.append(card)
+				card.position = Vector2((i*200)+350,325)
+				print(card.position)
 		

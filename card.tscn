@@ -1,9 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://b682qlqmy1vch"]
+[gd_scene load_steps=6 format=3 uid="uid://b682qlqmy1vch"]
 
 [ext_resource type="Script" path="res://card.gd" id="1_ne2vv"]
+[ext_resource type="Texture2D" uid="uid://dwh25g6j8twvh" path="res://Art/CardArt/blank.png" id="3_g0i2j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj0or"]
-size = Vector2(219, 233.688)
+size = Vector2(219, 240.844)
+
+[sub_resource type="Animation" id="Animation_a87cf"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_20d4d"]
+_data = {
+"fade_in": SubResource("Animation_a87cf")
+}
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_ne2vv")
@@ -13,5 +35,18 @@ script = ExtResource("1_ne2vv")
 [node name="Area2D" type="Area2D" parent="Sprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
-position = Vector2(37.5, 27.1563)
+position = Vector2(0, 2.578)
 shape = SubResource("RectangleShape2D_fj0or")
+
+[node name="Border" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+position = Vector2(-0.500008, -1.5)
+scale = Vector2(0.617128, 0.513158)
+texture = ExtResource("3_g0i2j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+root_node = NodePath("../Border")
+libraries = {
+"": SubResource("AnimationLibrary_20d4d")
+}

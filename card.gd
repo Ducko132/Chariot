@@ -67,6 +67,17 @@ const ManaPerTurn = {
 	"UndeadMarch": 0,
 }
 
+const ContCard = {
+	"SolarFlare": false,
+	"Sunburst": true,
+	"DawnsEmbrace": false,
+	"Bolt": false,
+	"GiftofFlame": false,
+	"LiftTheSky": false,
+	"TridentThrow": false,
+	"UndeadMarch": false,
+}
+
 const Art = {
 	"SolarFlare": "res://Art/StarterArt/solarflare.png",
 	"Sunburst": "res://Art/StarterArt/sunburst.png",
@@ -105,11 +116,14 @@ func get_card_type(card):
 
 func _on_mouse_entered():
 	$Sprite2D.scale = Vector2(0.8,0.8)
+	$Sprite2D/AnimationPlayer.play("fade_in")
 
 func _on_mouse_exited():
 	$Sprite2D.scale = Vector2(0.7,0.7)
+	$Sprite2D/AnimationPlayer.play_backwards("fade_in")
 	
 func _input_event(viewport, event, shape_idx):
+	# continuous stuff
 	if StateMachine.curstate == StateMachine.State.PLAYER1_PLAY:
 			if event is InputEventMouseButton and event.pressed:
 				if StateMachine.playermana >= Cost[self.card_type]:
@@ -117,20 +131,30 @@ func _input_event(viewport, event, shape_idx):
 					print(Cost[self.card_type])
 					print("click")
 					print("monster loses", Power[self.card_type], "health")
+					#print("prequeuefreetempdeck",StateMachine.tempdeck)
+					print("prequeuefreerealdeck",StateMachine.truedeck)
 					cardplayed.emit(self)
-					self.queue_free()
+					#print("tempdeck",StateMachine.tempdeck)
+					print("realdeck",StateMachine.truedeck)
+					if ContCard[self.get_card_type(self)]:
+						print("continuous")
+						pass
+					else:
+						self.queue_free()
 				else:
 					print("you don't got enough to play this bro")
 	elif StateMachine.curstate == StateMachine.State.END:
 		if event is InputEventMouseButton and event.pressed:
 			if StateMachine.pickCount > 0:
-				print("pre-add", StateMachine.deck)
-				StateMachine.deck.append(self.card_type)
+				#print("regdeckpreadd", StateMachine.deck)
+				print("pre-add", StateMachine.truedeck)
+				StateMachine.truedeck.append(self.card_type)
 				StateMachine.pickCount -= 1
 				if StateMachine.pickCount == 0:
 					StateMachine.GameLevel += 1
 					StateMachine.start_game(StateMachine.GameLevel)
-				print("post-add", StateMachine.deck)
+					#print("regdeckpostadd", StateMachine.truedeck)
+					print("post-add", StateMachine.truedeck)
 				self.queue_free()
 		pass
 

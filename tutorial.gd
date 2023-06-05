@@ -27,6 +27,7 @@ var curmonstermove
 
 var hand = []
 var tempdeck
+# add a discard pile!
 
 func _ready():
 	rng.randomize()
@@ -42,6 +43,8 @@ func _ready():
 		var idx = rng.randi_range(0,tempdeck.size()-1)
 		hand.append(tempdeck[idx])
 		tempdeck.remove_at(idx)
+		print("tempdeck", StateMachine.tempdeck)
+		print("realdeck", StateMachine.deck)
 	
 	for i in 3:
 		var card = CardScene.instantiate()
