@@ -69,7 +69,7 @@ const ManaPerTurn = {
 
 const ContCard = {
 	"SolarFlare": false,
-	"Sunburst": true,
+	"Sunburst": false,
 	"DawnsEmbrace": false,
 	"Bolt": false,
 	"GiftofFlame": false,
@@ -128,13 +128,12 @@ func _input_event(viewport, event, shape_idx):
 			if event is InputEventMouseButton and event.pressed:
 				if StateMachine.playermana >= Cost[self.card_type]:
 					StateMachine.playermana -= Cost[self.card_type]
+					$Sprite2D/AnimationPlayer.play("play_card")
 					print(Cost[self.card_type])
 					print("click")
 					print("monster loses", Power[self.card_type], "health")
-					#print("prequeuefreetempdeck",StateMachine.tempdeck)
 					print("prequeuefreerealdeck",StateMachine.truedeck)
 					cardplayed.emit(self)
-					#print("tempdeck",StateMachine.tempdeck)
 					print("realdeck",StateMachine.truedeck)
 					if ContCard[self.get_card_type(self)]:
 						print("continuous")
@@ -146,14 +145,12 @@ func _input_event(viewport, event, shape_idx):
 	elif StateMachine.curstate == StateMachine.State.END:
 		if event is InputEventMouseButton and event.pressed:
 			if StateMachine.pickCount > 0:
-				#print("regdeckpreadd", StateMachine.deck)
 				print("pre-add", StateMachine.truedeck)
 				StateMachine.truedeck.append(self.card_type)
 				StateMachine.pickCount -= 1
 				if StateMachine.pickCount == 0:
 					StateMachine.GameLevel += 1
 					StateMachine.start_game(StateMachine.GameLevel)
-					#print("regdeckpostadd", StateMachine.truedeck)
 					print("post-add", StateMachine.truedeck)
 				self.queue_free()
 		pass

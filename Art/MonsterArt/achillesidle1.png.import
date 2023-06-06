@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc68so550by76"
-path="res://.godot/imported/CyclopsAttack.PNG-1ab49a56da9d244a881c7ca10b849a45.ctex"
+uid="uid://6i17uwvkgoev"
+path="res://.godot/imported/achillesidle1.png-013ebce05756828cedd78b34c99f577b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/MonsterArt/Cyclops/CyclopsAttack.PNG"
-dest_files=["res://.godot/imported/CyclopsAttack.PNG-1ab49a56da9d244a881c7ca10b849a45.ctex"]
+source_file="res://Art/MonsterArt/achillesidle1.png"
+dest_files=["res://.godot/imported/achillesidle1.png-013ebce05756828cedd78b34c99f577b.ctex"]
 
 [params]
 

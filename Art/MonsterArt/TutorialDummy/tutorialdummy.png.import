@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cecdvgsrfb2na"
-path="res://.godot/imported/CyclopsDead.PNG-3b55db69fb2bd1b625911314366ab184.ctex"
+uid="uid://c55fe2fqftrho"
+path="res://.godot/imported/tutorialdummy.png-857f4fbb53413ec48b4e560fd511f836.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/MonsterArt/Cyclops/CyclopsDead.PNG"
-dest_files=["res://.godot/imported/CyclopsDead.PNG-3b55db69fb2bd1b625911314366ab184.ctex"]
+source_file="res://Art/MonsterArt/TutorialDummy/tutorialdummy.png"
+dest_files=["res://.godot/imported/tutorialdummy.png-857f4fbb53413ec48b4e560fd511f836.ctex"]
 
 [params]
 

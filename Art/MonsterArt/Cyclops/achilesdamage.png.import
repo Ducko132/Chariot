@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp8xkbaee72po"
-path="res://.godot/imported/CyclopsTakeDamage.PNG-fb185592eb1185bfa229963a12f5fae0.ctex"
+uid="uid://dm2l68mde2q0p"
+path="res://.godot/imported/achilesdamage.png-8960d6fd07b45e784055ed83e0b506e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/MonsterArt/Cyclops/CyclopsTakeDamage.PNG"
-dest_files=["res://.godot/imported/CyclopsTakeDamage.PNG-fb185592eb1185bfa229963a12f5fae0.ctex"]
+source_file="res://Art/MonsterArt/Cyclops/achilesdamage.png"
+dest_files=["res://.godot/imported/achilesdamage.png-8960d6fd07b45e784055ed83e0b506e7.ctex"]
 
 [params]
 

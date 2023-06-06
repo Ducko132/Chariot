@@ -1,44 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://bex3objwi5rvi"]
+[gd_scene load_steps=9 format=3 uid="uid://bex3objwi5rvi"]
 
 [ext_resource type="Script" path="res://monster.gd" id="1_hy4g3"]
-[ext_resource type="Texture2D" uid="uid://bc68so550by76" path="res://Art/MonsterArt/Cyclops/CyclopsAttack.PNG" id="2_c061l"]
-[ext_resource type="Texture2D" uid="uid://dp8xkbaee72po" path="res://Art/MonsterArt/Cyclops/CyclopsTakeDamage.PNG" id="2_oxiia"]
-[ext_resource type="Texture2D" uid="uid://cegg7mtki7h5i" path="res://Art/MonsterArt/Cyclops/CyclopsIdle1.PNG" id="2_uf4qw"]
-[ext_resource type="Texture2D" uid="uid://dakcetuigy5gs" path="res://Art/MonsterArt/Cyclops/CyclopsIdle2.PNG" id="3_d283i"]
-[ext_resource type="Texture2D" uid="uid://cecdvgsrfb2na" path="res://Art/MonsterArt/Cyclops/CyclopsDead.PNG" id="3_yb1n2"]
+[ext_resource type="Texture2D" uid="uid://mkjarntp5efq" path="res://Art/MonsterArt/Cyclops/cyclopsdamage.png" id="2_084jn"]
+[ext_resource type="Texture2D" uid="uid://dfvt2jfidxqxw" path="res://Art/MonsterArt/Cyclops/cyclopsidle1.png" id="3_7bcvc"]
+[ext_resource type="Texture2D" uid="uid://flug12vpqenn" path="res://Art/MonsterArt/Cyclops/cyclopsidle2.png" id="4_cef3h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuiaf"]
+atlas = ExtResource("2_084jn")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd4h4"]
+atlas = ExtResource("3_7bcvc")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ovrh"]
+atlas = ExtResource("4_cef3h")
+region = Rect2(0, 0, 500, 400)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_frh0e"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_c061l")
-}],
-"loop": true,
-"name": &"cyclops_attack",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 2.0,
-"texture": ExtResource("2_oxiia")
+"texture": SubResource("AtlasTexture_uuiaf")
 }],
 "loop": true,
 "name": &"cyclops_damage",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_yb1n2")
-}],
-"loop": true,
-"name": &"cyclops_dead",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_uf4qw")
+"texture": SubResource("AtlasTexture_cd4h4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_d283i")
+"texture": SubResource("AtlasTexture_8ovrh")
 }],
 "loop": true,
 "name": &"cyclops_idle",
@@ -54,7 +48,6 @@ wait_time = 2.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(788, 206)
 sprite_frames = SubResource("SpriteFrames_frh0e")
-animation = &"cyclops_attack"
+animation = &"cyclops_idle"
 
-[connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

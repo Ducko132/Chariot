@@ -23,10 +23,8 @@ var tempdeck = []
 
 func _ready():
 	rng.randomize()
-	for i in 5:
-		for Card in CardsEnum:
-			tempdeck.append(Card)
-	StateMachine.truedeck = tempdeck.duplicate()
+	
+	tempdeck = StateMachine.truedeck.duplicate()
 	print(tempdeck)
 	
 	for i in 3:

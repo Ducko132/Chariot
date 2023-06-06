@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfvt2jfidxqxw"
-path="res://.godot/imported/cyclopsidle1.png-2672dc9995bb818fed4349a660c7b133.ctex"
+uid="uid://b6agm8wr6y41u"
+path="res://.godot/imported/achillesidle2.png-405e6ba6819627b63fea938889013abe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/MonsterArt/Cyclops/cyclopsidle1.png"
-dest_files=["res://.godot/imported/cyclopsidle1.png-2672dc9995bb818fed4349a660c7b133.ctex"]
+source_file="res://Art/MonsterArt/achillesidle2.png"
+dest_files=["res://.godot/imported/achillesidle2.png-405e6ba6819627b63fea938889013abe.ctex"]
 
 [params]
 

@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://du00j1ctt5eto"]
+
+[ext_resource type="Script" path="res://monster_2.gd" id="1_n0y5v"]
+[ext_resource type="Texture2D" uid="uid://6i17uwvkgoev" path="res://Art/MonsterArt/achillesidle1.png" id="1_yq141"]
+[ext_resource type="Texture2D" uid="uid://b6agm8wr6y41u" path="res://Art/MonsterArt/achillesidle2.png" id="2_ntxpy"]
+[ext_resource type="Texture2D" uid="uid://dm2l68mde2q0p" path="res://Art/MonsterArt/Cyclops/achilesdamage.png" id="2_uvm4n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsxgx"]
+atlas = ExtResource("2_uvm4n")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3a1h"]
+atlas = ExtResource("1_yq141")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0776"]
+atlas = ExtResource("2_ntxpy")
+region = Rect2(0, 0, 500, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pu5ve"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsxgx")
+}],
+"loop": true,
+"name": &"achilles_damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3a1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0776")
+}],
+"loop": true,
+"name": &"achilles_idle",
+"speed": 5.0
+}]
+
+[node name="monster2" type="Node2D"]
+script = ExtResource("1_n0y5v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(545, 213)
+sprite_frames = SubResource("SpriteFrames_pu5ve")
+animation = &"achilles_idle"

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c22uokly07jbg"]
+
+[ext_resource type="Script" path="res://bossmonster.gd" id="1_l7rdl"]
+
+[node name="bossmonster" type="Node2D"]
+script = ExtResource("1_l7rdl")
