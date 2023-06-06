@@ -23,6 +23,13 @@ StateMachine="*res://state_machine.gd"
 
 window/stretch/mode="viewport"
 
+[input]
+
+text={
+"deadzone": 0.5,
+"events": []
+}
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

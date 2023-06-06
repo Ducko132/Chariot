@@ -1,14 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://djmpgqcf2s14l"]
+[gd_scene load_steps=4 format=3 uid="uid://djmpgqcf2s14l"]
 
 [ext_resource type="PackedScene" uid="uid://bex3objwi5rvi" path="res://monster.tscn" id="1_7083e"]
 [ext_resource type="Script" path="res://game_board.gd" id="1_twws4"]
+[ext_resource type="Texture2D" uid="uid://cspg6p0hnqhl2" path="res://Art/Olympus.jpg" id="3_elwd1"]
 
 [node name="GameBoard" type="Node2D"]
 script = ExtResource("1_twws4")
 
 [node name="monster" parent="." instance=ExtResource("1_7083e")]
+position = Vector2(-48, -3)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="ContinuousCards" type="Node2D" parent="."]
 position = Vector2(292, 377)
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(292, 377)
+
+[node name="Olympus" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(595, 321)
+texture = ExtResource("3_elwd1")

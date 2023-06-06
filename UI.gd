@@ -15,5 +15,5 @@ func _process(delta):
 	if !firstturn:
 		$CanvasLayer/PassTurn.text = "Next Turn"
 		
-	$CanvasLayer/MonsterHealth.text = "MONSTER HEALTH: " + str(StateMachine.monsterhp) + " MONSTER DOES: " + str(StateMachine.curmonstermove)
-	$CanvasLayer/PlayerHealth.text = "PLAYER HEALTH: " + str(StateMachine.playerhp) + " PLAYER MANA: " + str(StateMachine.playermana)
+	$CanvasLayer/MonsterHealth.text = "MONSTER HEALTH: " + str(StateMachine.monsterhp) + "\nMONSTER DOES: " + str(StateMachine.curmonstermove)
+	$CanvasLayer/PlayerHealth.text = "PLAYER HEALTH: " + str(StateMachine.playerhp) + "\nPLAYER MANA: " + str(StateMachine.playermana)

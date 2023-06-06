@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg18frs7envrr"]
+
+[ext_resource type="Script" path="res://Victoryscreen.gd" id="1_0ppw1"]
+[ext_resource type="FontFile" uid="uid://bmved3auncjy3" path="res://FFFFORWA.TTF" id="2_to1k3"]
+[ext_resource type="Texture2D" uid="uid://bk5w0c2srog4p" path="res://Art/VictoryBack.jpg" id="3_w7t6x"]
+
+[node name="Victoryscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ppw1")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 76.0
+offset_right = 1098.0
+offset_bottom = 226.0
+theme_override_fonts/font = ExtResource("2_to1k3")
+theme_override_font_sizes/font_size = 80
+text = "CONGRATULATIONS!"
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 446.0
+offset_top = 265.0
+offset_right = 652.0
+offset_bottom = 347.0
+text = "Play Again?"
+
+[node name="MainMenu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 443.0
+offset_top = 397.0
+offset_right = 645.0
+offset_bottom = 466.0
+text = "Main Menu"
+
+[node name="VictoryBack" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(581, 163)
+scale = Vector2(2.19444, 2.24947)
+texture = ExtResource("3_w7t6x")
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqba6qys75ste"]
+[gd_scene load_steps=4 format=3 uid="uid://cqba6qys75ste"]
 
 [ext_resource type="Script" path="res://UI.gd" id="1_ba8qr"]
+[ext_resource type="FontFile" uid="uid://bmved3auncjy3" path="res://FFFFORWA.TTF" id="2_18o4c"]
+[ext_resource type="Texture2D" uid="uid://cwmgslnnyrrcw" path="res://Art/DIYPanel.PNG" id="3_tyvm4"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -14,21 +16,38 @@ script = ExtResource("1_ba8qr")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerHealth" type="Label" parent="CanvasLayer"]
-offset_left = 825.0
-offset_top = 617.0
-offset_right = 898.0
-offset_bottom = 640.0
+offset_left = 41.0
+offset_top = 488.0
+offset_right = 173.0
+offset_bottom = 608.0
+theme_override_fonts/font = ExtResource("2_18o4c")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/PlayerHealth"]
+modulate = Color(1, 1, 1, 0.760784)
+z_index = -2
+position = Vector2(98.75, 55.25)
+scale = Vector2(3.73077, 4.27143)
+texture = ExtResource("3_tyvm4")
 
 [node name="MonsterHealth" type="Label" parent="CanvasLayer"]
-offset_left = 165.0
-offset_top = 78.0
-offset_right = 205.0
-offset_bottom = 101.0
+offset_left = 54.0
+offset_top = 49.0
+offset_right = 94.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("2_18o4c")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/MonsterHealth"]
+modulate = Color(1, 1, 1, 0.760784)
+z_index = -2
+position = Vector2(252.75, 36.25)
+scale = Vector2(8.46923, 3.18571)
+texture = ExtResource("3_tyvm4")
 
 [node name="PassTurn" type="Button" parent="CanvasLayer"]
-offset_left = 893.0
-offset_top = 526.0
-offset_right = 974.0
-offset_bottom = 564.0
+offset_left = 951.0
+offset_top = 505.0
+offset_right = 1064.0
+offset_bottom = 567.0
+theme_override_fonts/font = ExtResource("2_18o4c")
 
 [connection signal="pressed" from="CanvasLayer/PassTurn" to="." method="_on_pass_turn_pressed"]

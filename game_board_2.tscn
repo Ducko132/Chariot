@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0knjdqc216yk"]
+[gd_scene load_steps=4 format=3 uid="uid://d0knjdqc216yk"]
 
 [ext_resource type="PackedScene" uid="uid://du00j1ctt5eto" path="res://monster_2.tscn" id="1_417mb"]
 [ext_resource type="Script" path="res://game_board_2.gd" id="1_doal6"]
+[ext_resource type="Texture2D" uid="uid://cspg6p0hnqhl2" path="res://Art/Olympus.jpg" id="3_4hwhs"]
 
 [node name="game_board_2" type="Node2D"]
 script = ExtResource("1_doal6")
 
 [node name="monster2" parent="." instance=ExtResource("1_417mb")]
+position = Vector2(314, 19)
+
+[node name="Background" type="Sprite2D" parent="."]
+
+[node name="Olympus" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(563, 325)
+texture = ExtResource("3_4hwhs")

@@ -3,6 +3,7 @@ var CardScene = preload("res://card.tscn")
 var Cards = preload("res://card.gd")
 var UI = preload("res://UI.tscn")
 var gameboard = preload("res://game_board.tscn")
+var texttutorial = preload("res://textbox.tscn")
 var CardsEnum = Cards.StarterCards
 var Cost = Cards.Cost
 var Power = Cards.Power

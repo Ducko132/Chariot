@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://n7li7nnjgovn"]
+[gd_scene load_steps=5 format=3 uid="uid://n7li7nnjgovn"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_asndg"]
+[ext_resource type="FontFile" uid="uid://bmved3auncjy3" path="res://FFFFORWA.TTF" id="2_tdvjw"]
+[ext_resource type="Texture2D" uid="uid://0ngowccmrdlj" path="res://Art/BackgroundMain.jpg" id="3_3rdl0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kt0le"]
 font_size = 100
+font_color = Color(0, 0, 0, 1)
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -14,10 +17,11 @@ script = ExtResource("1_asndg")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
-offset_left = 394.0
+offset_left = 369.0
 offset_top = 121.0
-offset_right = 694.0
-offset_bottom = 261.0
+offset_right = 758.0
+offset_bottom = 262.0
+theme_override_fonts/font = ExtResource("2_tdvjw")
 text = "Helios"
 label_settings = SubResource("LabelSettings_kt0le")
 horizontal_alignment = 1
@@ -37,6 +41,14 @@ offset_top = 348.0
 offset_right = 612.0
 offset_bottom = 408.0
 text = "Tutorial"
+
+[node name="Background" type="Sprite2D" parent="."]
+
+[node name="BackgroundMain" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(612, 209)
+scale = Vector2(0.426562, 0.465741)
+texture = ExtResource("3_3rdl0")
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Tutorial" to="." method="_on_tutorial_pressed"]

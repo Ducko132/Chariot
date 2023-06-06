@@ -46,7 +46,7 @@ script = ExtResource("1_hy4g3")
 wait_time = 2.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(788, 206)
+position = Vector2(926, 197)
 sprite_frames = SubResource("SpriteFrames_frh0e")
 animation = &"cyclops_idle"
 

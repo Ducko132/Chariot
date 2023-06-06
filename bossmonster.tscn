@@ -1,6 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://c22uokly07jbg"]
+[gd_scene load_steps=7 format=3 uid="uid://c22uokly07jbg"]
 
 [ext_resource type="Script" path="res://bossmonster.gd" id="1_l7rdl"]
+[ext_resource type="Texture2D" uid="uid://c7c7bvykoodj4" path="res://aresdamage.png" id="2_rr081"]
+[ext_resource type="Texture2D" uid="uid://bhtqnsjoafq0h" path="res://Art/aresidle1.png" id="3_m78eg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k01ce"]
+atlas = ExtResource("2_rr081")
+region = Rect2(0, 0, 700, 700)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1lv3g"]
+atlas = ExtResource("3_m78eg")
+region = Rect2(0, 0, 700, 700)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_psh2c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k01ce")
+}],
+"loop": true,
+"name": &"ares_damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1lv3g")
+}],
+"loop": true,
+"name": &"ares_idle",
+"speed": 5.0
+}]
 
 [node name="bossmonster" type="Node2D"]
 script = ExtResource("1_l7rdl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_psh2c")
+animation = &"ares_damage"

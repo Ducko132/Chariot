@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0m6ni5fak6s2"]
+
+[ext_resource type="Script" path="res://Textbox.gd" id="1_qk0e4"]
+
+[node name="Textbox" type="CanvasLayer"]
+script = ExtResource("1_qk0e4")
+
+[node name="TextboxContainer" type="MarginContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_top = 101.0
+offset_right = 3.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="TextboxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="TextboxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
