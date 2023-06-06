@@ -343,7 +343,7 @@ func switch_states(new_state: State):
 			for child in game_board.get_children():
 				#child.visible = false
 				child.queue_free()
-			get_tree().change_scene_to_file("res://main_menu.tscn")
+			get_tree().change_scene_to_file("res://lossscreen.tscn")
 		elif GameLevel == 3:
 			await get_tree().create_timer(1).timeout
 			print("GGWP!!!! YOU BEAT THE GAME!")

@@ -48,7 +48,10 @@ func _ready():
 @warning_ignore("unused_parameter")
 func _process(delta):
 	if StateMachine.monsterhp <= 0:
-		get_tree().change_scene_to_file("res://main_menu.tscn")
+		get_tree().change_scene_to_file("res://victoryscreen.tscn")
+		self.queue_free()
+	if StateMachine.playerhp <= 0:
+		get_tree().change_scene_to_file("res://lossscreen.tscn")
 		self.queue_free()
 
 func play_card(card):

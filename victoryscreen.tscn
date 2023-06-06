@@ -29,7 +29,7 @@ offset_left = 446.0
 offset_top = 265.0
 offset_right = 652.0
 offset_bottom = 347.0
-text = "Play Again?"
+text = "Play From Level 1"
 
 [node name="MainMenu" type="Button" parent="."]
 layout_mode = 0

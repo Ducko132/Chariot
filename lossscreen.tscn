@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy28tlqlpr87c"]
+
+[ext_resource type="Script" path="res://lossscreen.gd" id="1_6ob6e"]
+[ext_resource type="FontFile" uid="uid://bmved3auncjy3" path="res://FFFFORWA.TTF" id="2_yoq5k"]
+[ext_resource type="Texture2D" uid="uid://dmmqm4ije3s62" path="res://Art/LossBackground.jpg" id="3_naiwo"]
+
+[node name="lossscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ob6e")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 398.0
+offset_top = 144.0
+offset_right = 701.0
+offset_bottom = 217.0
+theme_override_fonts/font = ExtResource("2_yoq5k")
+theme_override_font_sizes/font_size = 50
+text = "You Lost!"
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 257.0
+offset_right = 702.0
+offset_bottom = 361.0
+text = "Try Again? (Start from Level 1)"
+
+[node name="mainmenu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 383.0
+offset_right = 693.0
+offset_bottom = 457.0
+text = "Main Menu"
+
+[node name="LossBackground" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(581, 287)
+scale = Vector2(1.62067, 1.73063)
+texture = ExtResource("3_naiwo")
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="mainmenu" to="." method="_on_mainmenu_pressed"]
